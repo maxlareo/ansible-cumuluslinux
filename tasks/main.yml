@@ -1,2 +1,7 @@
 ---
-# tasks file for cumuluslinux_init
+# tasks file for cumuluslinux
+
+- name: Check CumulusLinux Version >= 3.2.0
+  fail:
+    msg: 'Use NCLU, which need CumulusLinux >= 3.2'
+  when: ansible_lsb.release is version_compare("3.2.0", "<=")
