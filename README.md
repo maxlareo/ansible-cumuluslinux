@@ -1,38 +1,63 @@
-Role Name
+CumulusLinux
 =========
 
-A brief description of the role goes here.
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-emby-blue.svg)](https://galaxy.ansible.com/maxlareo/cumuluslinux/)
+
+An Ansible role to manage [Cumulus Linux](https://cumulusnetworks.com/products/cumulus-linux/) through NCLU module.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+- `cl_license`: [default: `''`]: [CumulusLinux license](https://support.cumulusnetworks.com/hc/en-us/articles/205329608-Understanding-the-License-for-Cumulus-Linux-2-5-3-and-Later)
+- `cl_hostname`: [default: `cumulus`]: Hostname of the device
+- `cl_time_zone`: [default: `Etc/UTC`]: Timezone
+- `cl_time_ntp_servers`: [default: `[]`]: NTP servers list, possibility to add iburst option
+- `cl_time_ntp_source`: [default: `eth0`]: NTP source interface
+- `cl_locales`: [default: `[]`]: Enable locale from locale-gen
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
+```yaml
+    - hosts: network_cl
       roles:
-         - { role: username.rolename, x: 42 }
+        - cumuluslinux
+      vars:
+        cl_license: user@company.com|thequickbrownfoxjumpsoverthelazydog312
+        cl_hostname: leaf01
+        cl_time_zone: Europe/Paris
+        cl_time_ntp_servers:
+          - 0.cumulusnetworks.pool.ntp.org iburst
+          - 1.cumulusnetworks.pool.ntp.org 
+          - 2.cumulusnetworks.pool.ntp.org 
+          - 3.cumulusnetworks.pool.ntp.org 
+        cl_time_ntp_source: eth1
+        cl_locales:
+          - en_US.UTF-8 UTF-8
+          - fr_FR.UTF-8 UTF-8
+```
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+[Maxime Lareo](https://github.com/maxlareo)
+
+Feedback, bug-reports, requests, ...
+------------------------------------
+
+Are [welcome](https://github.com/maxlareo/ansible-cumuluslinux/issues) !
