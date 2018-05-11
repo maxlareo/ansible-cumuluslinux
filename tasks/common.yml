@@ -1,0 +1,42 @@
+---
+# Manage CumulusLinux common settings
+# Such as hostname, timezone, ntp, locale
+
+- name: Set hostname
+  nclu:
+    atomic: true
+    description: Ansible - set hostname
+    commands:
+      - 'add hostname {{ cl_hostname }}'
+
+- name: Set timezone
+  nclu:
+    atomic: true
+    description: Ansible - set timezone
+    commands:
+      - 'add time zone {{ cl_time_zone }}'
+
+- name: Set ntp servers
+  nclu:
+    atomic: true
+    description: Ansible - set ntp servers
+    commands:
+      - 'add time ntp server {{ item }}'
+  with_items:
+    - '{{ cl_time_ntp_servers }}'
+
+- name: Set ntp source
+  nclu:
+    atomic: true
+    description: Ansible - set ntp source
+    commands:
+      - 'add time ntp server {{ cl_time_ntp_source }}'
+
+- name: Enable locales
+  lineinfile:
+    dest: /etc/locale.gen
+    line: '{{ item }}'
+    regexp: '^.*{{ item }}'
+  with_items:
+    - '{{ cl_locales }}'
+  notify: locale-gen

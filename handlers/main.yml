@@ -1,2 +1,5 @@
 ---
 # handlers file for cumuluslinux_init
+
+- name: locale-gen
+  shell: locale-gen
