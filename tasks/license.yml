@@ -1,0 +1,11 @@
+---
+# Manage CumulusLinux license
+
+- name: license file
+  copy:
+    owner: root
+    group: root
+    mode: 0644
+    dest: /etc/cumulus/.license
+    content: '{{ cl_license }}'
+  when: cl_license != ''
