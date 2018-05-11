@@ -18,9 +18,11 @@ Variable    | Description | Type | Default
 `cl_license` | [CumulusLinux license](https://support.cumulusnetworks.com/hc/en-us/articles/205329608-Understanding-the-License-for-Cumulus-Linux-2-5-3-and-Later) | String | `''`
 `cl_hostname` | Hostname of the device | String | `cumulus`
 `cl_time_zone` | Timezone | String | `Etc/UTC`
-`cl_time_ntp_servers` | NTP servers list, possibility to add iburst option | Array of String | `[]`
+`cl_time_ntp_servers` | NTP servers list, possibility to add iburst option | Array | `[]`
 `cl_time_ntp_source` | NTP source interface | String | `eth0`
-`cl_locales` | Enable locale from locale-gen | Array of String | `[]`
+`cl_locales` | Enable locale from locale-gen | Array | `[]`
+`cl_dns_nameserver_ipv4` | DNS nameserver in IPv4 | Array | `[]`
+`cl_dns_nameserver_ipv6` | DNS nameserver in IPv6 | Array | `[]`
 
 Dependencies
 ------------
@@ -47,6 +49,11 @@ Example Playbook
         cl_locales:
           - en_US.UTF-8 UTF-8
           - fr_FR.UTF-8 UTF-8
+        cl_dns_nameserver_ipv4:
+          - 9.9.9.9
+          - 1.1.1.1
+        cl_dns_nameserver_ipv6:
+          - 2620:fe::fe
 ```
 
 License

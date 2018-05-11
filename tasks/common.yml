@@ -40,3 +40,21 @@
   with_items:
     - '{{ cl_locales }}'
   notify: locale-gen
+
+- name: set dns nameserver ipv4
+  nclu:
+    atomic: true
+    description: Ansible - set dns nameserver ipv4
+    commands:
+      - 'add dns nameserver ipv4 {{ item }}'
+  with_items:
+    - '{{ cl_dns_nameserver_ipv4 }}'
+
+- name: set dns nameserver ipv6
+  nclu:
+    atomic: true
+    description: Ansible - set dns nameserver ipv6
+    commands:
+      - 'add dns nameserver ipv6 {{ item }}'
+  with_items:
+    - '{{ cl_dns_nameserver_ipv6 }}'
