@@ -1,7 +1,7 @@
 CumulusLinux
 =========
 
-[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-emby-blue.svg)](https://galaxy.ansible.com/maxlareo/cumuluslinux/)
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-cumuluslinux-blue.svg)](https://galaxy.ansible.com/maxlareo/cumuluslinux/)
 
 An Ansible role to manage [Cumulus Linux](https://cumulusnetworks.com/products/cumulus-linux/) through NCLU module.
 
@@ -13,12 +13,14 @@ None
 Role Variables
 --------------
 
-- `cl_license`: [default: `''`]: [CumulusLinux license](https://support.cumulusnetworks.com/hc/en-us/articles/205329608-Understanding-the-License-for-Cumulus-Linux-2-5-3-and-Later)
-- `cl_hostname`: [default: `cumulus`]: Hostname of the device
-- `cl_time_zone`: [default: `Etc/UTC`]: Timezone
-- `cl_time_ntp_servers`: [default: `[]`]: NTP servers list, possibility to add iburst option
-- `cl_time_ntp_source`: [default: `eth0`]: NTP source interface
-- `cl_locales`: [default: `[]`]: Enable locale from locale-gen
+Variable    | Description | Type | Default
+------------|-------------|------|--------
+`cl_license` | [CumulusLinux license](https://support.cumulusnetworks.com/hc/en-us/articles/205329608-Understanding-the-License-for-Cumulus-Linux-2-5-3-and-Later) | String | `''`
+`cl_hostname` | Hostname of the device | String | `cumulus`
+`cl_time_zone` | Timezone | String | `Etc/UTC`
+`cl_time_ntp_servers` | NTP servers list, possibility to add iburst option | Array of String | `[]`
+`cl_time_ntp_source` | NTP source interface | String | `eth0`
+`cl_locales` | Enable locale from locale-gen | Array of String | `[]`
 
 Dependencies
 ------------
