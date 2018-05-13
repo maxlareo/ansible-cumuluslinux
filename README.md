@@ -23,11 +23,46 @@ Variable    | Description | Type | Default
 `cl_locales` | Enable locale from locale-gen | Array | `[]`
 `cl_dns_nameserver_ipv4` | DNS nameserver in IPv4 | Array | `[]`
 `cl_dns_nameserver_ipv6` | DNS nameserver in IPv6 | Array | `[]`
+`cl_interfaces` | interfaces settings from `net add interfaces` | Hash | `{}`
 
 Dependencies
 ------------
 
 None
+
+Custom Lookup
+-------------
+
+### Recursive
+
+To manage Cumulus Linux interfaces configuration with Ansible, I coded a lookup plugin to be able to construct the variables from a hash and it will recursivly read the nested hash to transform the hash into a list of strings.
+
+Every depth into the cl_interfaces var will be added to the nclu command like that:
+
+var:
+```
+cl_interfaces:
+  swp1:
+    ip:
+      address: 192.168.1.1/24
+    link:
+      speed: 100
+  swp2:
+    bridge:
+      trunk:
+        vlans:
+          - 1-5
+          - 10,12
+```
+
+results:
+```
+swp1 ip address 192.168.1.1/24
+swp2 bridge trunk vlans 1-5
+swp2 bridge trunk vlans 10,12
+```
+
+This way I find the structure of the interfaces variable more readable for complex settings.
 
 Example Playbook
 ----------------
@@ -54,6 +89,18 @@ Example Playbook
           - 1.1.1.1
         cl_dns_nameserver_ipv6:
           - 2620:fe::fe
+        cl_interfaces:
+          swp1:
+            ip:
+              address: 192.168.1.1/24
+            link:
+              speed: 100
+          swp2:
+            bridge:
+              trunk:
+                vlans:
+                  - 1-5
+                  - 10,12
 ```
 
 License

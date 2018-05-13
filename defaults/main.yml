@@ -12,3 +12,6 @@ cl_time_ntp_source: eth0
 cl_locales: []
 cl_dns_nameserver_ipv4: []
 cl_dns_nameserver_ipv6: []
+
+# interfaces
+cl_interfaces: {}

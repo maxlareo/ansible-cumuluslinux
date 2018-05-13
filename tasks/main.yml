@@ -6,12 +6,20 @@
     msg: 'Use NCLU, which need CumulusLinux >= 3.2'
   when: ansible_lsb.release is version_compare("3.2.0", "<=")
 
-- include_tasks: license.yml
+- name: include license
+  include_tasks: license.yml
   tags:
     - cumulus
     - cumulus_license
 
-- include_tasks: common.yml
+- name: include common
+  include_tasks: common.yml
   tags:
     - cumulus
     - cumulus_common
+
+- name: include interfaces
+  include_tasks: interfaces.yml
+  tags:
+    - cumulus
+    - cumulus_interfaces
