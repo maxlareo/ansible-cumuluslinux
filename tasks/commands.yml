@@ -1,0 +1,11 @@
+---
+# Set CumulusLinux commands
+
+- name: Set commands
+  nclu:
+    atomic: true
+    description: 'Ansible - command: {{ item }}'
+    commands:
+      - '{{ item }}'
+  with_recursive:
+    - '{{ cl_commands }}'

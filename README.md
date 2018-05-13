@@ -8,7 +8,7 @@ An Ansible role to manage [Cumulus Linux](https://cumulusnetworks.com/products/c
 Requirements
 ------------
 
-None
+Cumulus Linux version 3.2+ only, previous releases do not support NCLU.
 
 Role Variables
 --------------
@@ -25,6 +25,7 @@ Variable    | Description | Type | Default
 `cl_dns_nameserver_ipv6` | DNS nameserver in IPv6 | Array | `[]`
 `cl_interfaces` | interfaces settings from `net add interfaces` using [recursive](#recursive) lookup | Hash | `{}`
 `cl_snmp` | snmp-server settings from `net add snmp-server` using [recursive](#recursive) lookup | Hash | `{}`
+`cl_commands` | Ansible nclu atomic commands using [recursive](#recursive) lookup, permit del/add actions, played first | Hash | `{}`
 
 Dependencies
 ------------
@@ -110,6 +111,11 @@ Example Playbook
           readonly-community:
             my_rocommunity:
               access: any
+        cl_commands:
+          add:
+            vrf: mgmt
+          del:
+            snmp-server: all
 ```
 
 License
