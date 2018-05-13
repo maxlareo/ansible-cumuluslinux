@@ -33,7 +33,7 @@ None
 Custom Lookup
 -------------
 
-### Recursive
+### [Recursive](https://github.com/maxlareo/ansible-cumuluslinux/blob/master/lookup_plugins/recursive.py)
 
 To manage Cumulus Linux interfaces configuration with Ansible, I coded a lookup plugin to be able to construct the variables from a hash and it will recursivly read the nested hash to transform the hash into a list of strings.
 
