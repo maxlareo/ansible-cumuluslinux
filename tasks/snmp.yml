@@ -1,0 +1,20 @@
+---
+# Setup snmp for CumulusLinux
+
+- name: abort uncommit nclu modification
+  nclu:
+    abort: true
+
+- name: set snmp-server
+  nclu:
+    commands:
+      - 'add snmp-server {{ item }}'
+  with_recursive:
+    - '{{ cl_snmp }}'
+  register: snmp
+
+- name: Commit nclu only if snmp changed
+  nclu:
+    commit: true
+    description: 'Ansible - set snmp-server'
+  when: snmp.changed

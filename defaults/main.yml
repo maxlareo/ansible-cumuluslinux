@@ -15,3 +15,6 @@ cl_dns_nameserver_ipv6: []
 
 # interfaces
 cl_interfaces: {}
+
+# snmp
+cl_snmp: {}

@@ -23,7 +23,8 @@ Variable    | Description | Type | Default
 `cl_locales` | Enable locale from locale-gen | Array | `[]`
 `cl_dns_nameserver_ipv4` | DNS nameserver in IPv4 | Array | `[]`
 `cl_dns_nameserver_ipv6` | DNS nameserver in IPv6 | Array | `[]`
-`cl_interfaces` | interfaces settings from `net add interfaces` | Hash | `{}`
+`cl_interfaces` | interfaces settings from `net add interfaces` using [recursive](#recursive) lookup | Hash | `{}`
+`cl_snmp` | snmp-server settings from `net add snmp-server` using [recursive](#recursive) lookup | Hash | `{}`
 
 Dependencies
 ------------
@@ -37,7 +38,7 @@ Custom Lookup
 
 To manage Cumulus Linux interfaces configuration with Ansible, I coded a lookup plugin to be able to construct the variables from a hash and it will recursivly read the nested hash to transform the hash into a list of strings.
 
-Every depth into the cl_interfaces var will be added to the nclu command like that:
+Every depth into the variables will be added to the nclu command like that:
 
 var:
 ```
@@ -62,13 +63,13 @@ swp2 bridge trunk vlans 1-5
 swp2 bridge trunk vlans 10,12
 ```
 
-This way I find the structure of the interfaces variable more readable for complex settings.
+This way I find the structure of the variables more readable for complex settings.
 
 Example Playbook
 ----------------
 
 ```yaml
-    - hosts: network_cl
+    - hosts: leaf01
       roles:
         - cumuluslinux
       vars:
@@ -101,6 +102,14 @@ Example Playbook
                 vlans:
                   - 1-5
                   - 10,12
+        cl_snmp:
+          listening-address:
+            ip:
+              - 192.168.1.10
+              - 192.168.1.20
+          readonly-community:
+            my_rocommunity:
+              access: any
 ```
 
 License

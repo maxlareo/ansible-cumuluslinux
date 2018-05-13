@@ -23,3 +23,9 @@
   tags:
     - cumulus
     - cumulus_interfaces
+
+- name: include snmp
+  include_tasks: snmp.yml
+  tags:
+    - cumulus
+    - cumulus_snmp
