@@ -3,3 +3,8 @@
 
 - name: locale-gen
   shell: locale-gen
+
+- name: restart_switchd
+  service:
+    name: switchd.service
+    state: restarted

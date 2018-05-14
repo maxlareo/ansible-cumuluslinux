@@ -9,3 +9,4 @@
     dest: /etc/cumulus/.license
     content: '{{ cl_license }}'
   when: cl_license != ''
+  notify: restart_switchd
