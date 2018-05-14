@@ -21,3 +21,6 @@ cl_snmp: {}
 
 # commands
 cl_commands: {}
+
+# syslog
+cl_syslog: {}

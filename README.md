@@ -23,9 +23,10 @@ Variable    | Description | Type | Default
 `cl_locales` | Enable locale from locale-gen | Array | `[]`
 `cl_dns_nameserver_ipv4` | DNS nameserver in IPv4 | Array | `[]`
 `cl_dns_nameserver_ipv6` | DNS nameserver in IPv6 | Array | `[]`
+`cl_commands` | Ansible nclu atomic commands using [recursive](#recursive) lookup, permit del/add actions, played first | Hash | `{}`
 `cl_interfaces` | interfaces settings from `net add interfaces` using [recursive](#recursive) lookup | Hash | `{}`
 `cl_snmp` | snmp-server settings from `net add snmp-server` using [recursive](#recursive) lookup | Hash | `{}`
-`cl_commands` | Ansible nclu atomic commands using [recursive](#recursive) lookup, permit del/add actions, played first | Hash | `{}`
+`cl_syslog` | syslog setings from two subarray ipv4 and ipv6, each entry need an ip + a port and optionaly a proto(udp|tcp) | Hash | `{}`
 
 Dependencies
 ------------
@@ -116,6 +117,16 @@ Example Playbook
             vrf: mgmt
           del:
             snmp-server: all
+        cl_syslog:
+          ipv4:
+            - ip: 192.168.1.10
+              port: 5000
+              proto: tcp
+            - ip: 192.168.1.20
+              port: 6000
+          ipv6:
+            - ip: 2001:db8::1
+              port: 5000
 ```
 
 License

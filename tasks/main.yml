@@ -4,7 +4,9 @@
 - name: Check CumulusLinux Version >= 3.2.0
   fail:
     msg: 'Use NCLU, which need CumulusLinux >= 3.2'
-  when: ansible_lsb.release is version_compare("3.2.0", "<=")
+  when: ansible_lsb.release is version_compare("3.2.0", "<")
+  tags:
+    - cumulus
 
 - name: include commands
   include_tasks: commands.yml
@@ -35,3 +37,9 @@
   tags:
     - cumulus
     - cumulus_snmp
+
+- name: include syslog
+  include_tasks: syslog.yml
+  tags:
+    - cumulus
+    - cumulus_syslog

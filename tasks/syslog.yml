@@ -1,0 +1,26 @@
+---
+# Manage Cumulus Linux syslog setup
+
+- name: set ipv4 syslog
+  nclu:
+    atomic: true
+    description: Ansible - syslog ipv4
+    commands:
+      - >
+        add syslog host
+        ipv4 {{ item.ip }}
+        port {{ item.proto | d('') }} {{ item.port }}
+  with_items:
+    - '{{ cl_syslog.ipv4 | d([]) }}'
+
+- name: set ipv6 syslog
+  nclu:
+    atomic: true
+    description: Ansible - syslog ipv6
+    commands:
+      - >
+        add syslog host
+        ipv6 {{ item.ip }}
+        port {{ item.proto | d('') }} {{ item.port }}
+  with_items:
+    - '{{ cl_syslog.ipv6 | d([]) }}'
