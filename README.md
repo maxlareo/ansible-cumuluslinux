@@ -27,6 +27,7 @@ Variable    | Description | Type | Default
 `cl_syslog` | syslog setings from two subarray of hash ipv4 and ipv6, each entry need an ip + a port and optionaly a proto(udp/tcp) | Hash | `{}`
 `cl_interfaces` | interfaces settings from `net add interfaces` using [recursive](#recursive) lookup | Hash | `{}`
 `cl_bond` | bond settings from `net add bond` using [recursive](#recursive) lookup | Hash | `{}`
+`cl_vlan` | vlan settings from `net add vlan` using [recursive](#recursive) lookup | Hash | `{}`
 
 Dependencies
 ------------
@@ -134,6 +135,11 @@ Example Playbook
               slaves:
                 - swp1
                 - swp2
+        cl_vlan:
+          100:
+            ip:
+              adress:
+                - 10.10.10.0/24
 ```
 
 License

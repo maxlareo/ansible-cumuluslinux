@@ -26,3 +26,6 @@ cl_interfaces: {}
 
 # bond
 cl_bond: {}
+
+# vlan
+cl_vlan: {}

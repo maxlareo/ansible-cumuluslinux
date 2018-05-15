@@ -1,0 +1,20 @@
+---
+# Set CumulusLinux vlan
+
+- name: abort uncommit nclu modification
+  nclu:
+    abort: true
+
+- name: Set vlan
+  nclu:
+    commands:
+      - add vlan {{ item }}
+  with_recursive:
+    - '{{ cl_vlan }}'
+  register: vlan
+
+- name: Commit nclu only if vlan changed
+  nclu:
+    commit: true
+    description: 'Ansible - set vlan'
+  when: vlan.changed

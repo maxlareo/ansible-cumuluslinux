@@ -49,3 +49,9 @@
   tags:
     - cumulus
     - cumulus_bond
+
+- name: include vlan
+  include_tasks: vlan.yml
+  tags:
+    - cumulus
+    - cumulus_vlan
