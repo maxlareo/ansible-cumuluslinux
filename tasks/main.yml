@@ -26,12 +26,6 @@
     - cumulus
     - cumulus_common
 
-- name: include interfaces
-  include_tasks: interfaces.yml
-  tags:
-    - cumulus
-    - cumulus_interfaces
-
 - name: include snmp
   include_tasks: snmp.yml
   tags:
@@ -43,3 +37,15 @@
   tags:
     - cumulus
     - cumulus_syslog
+
+- name: include interfaces
+  include_tasks: interfaces.yml
+  tags:
+    - cumulus
+    - cumulus_interfaces
+
+- name: include bond
+  include_tasks: bond.yml
+  tags:
+    - cumulus
+    - cumulus_bond

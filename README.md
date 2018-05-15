@@ -23,9 +23,10 @@ Variable    | Description | Type | Default
 `cl_locales` | Enable locale from locale-gen | Array | `[]`
 `cl_dns_nameserver` | DNS nameserver from two subarray ipv4 and ipv6 | Hash | `{}`
 `cl_commands` | Ansible nclu atomic commands using [recursive](#recursive) lookup, permit del/add actions, played first | Hash | `{}`
-`cl_interfaces` | interfaces settings from `net add interfaces` using [recursive](#recursive) lookup | Hash | `{}`
 `cl_snmp` | snmp-server settings from `net add snmp-server` using [recursive](#recursive) lookup | Hash | `{}`
 `cl_syslog` | syslog setings from two subarray of hash ipv4 and ipv6, each entry need an ip + a port and optionaly a proto(udp/tcp) | Hash | `{}`
+`cl_interfaces` | interfaces settings from `net add interfaces` using [recursive](#recursive) lookup | Hash | `{}`
+`cl_bond` | bond settings from `net add bond` using [recursive](#recursive) lookup | Hash | `{}`
 
 Dependencies
 ------------
@@ -127,6 +128,12 @@ Example Playbook
           ipv6:
             - ip: 2001:db8::1
               port: 5000
+        cl_bond:
+          uplink:
+            bond:
+              slaves:
+                - swp1
+                - swp2
 ```
 
 License

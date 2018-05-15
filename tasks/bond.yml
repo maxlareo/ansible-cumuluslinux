@@ -1,0 +1,20 @@
+---
+# Set CumulusLinux bond
+
+- name: abort uncommit nclu modification
+  nclu:
+    abort: true
+
+- name: Set bond
+  nclu:
+    commands:
+      - add bond {{ item }}
+  with_recursive:
+    - '{{ cl_bond }}'
+  register: bond
+
+- name: Commit nclu only if bond changed
+  nclu:
+    commit: true
+    description: 'Ansible - set bond'
+  when: bond.changed
