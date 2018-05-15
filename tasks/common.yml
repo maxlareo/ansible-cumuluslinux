@@ -48,7 +48,7 @@
     commands:
       - 'add dns nameserver ipv4 {{ item }}'
   with_items:
-    - '{{ cl_dns_nameserver_ipv4 }}'
+    - '{{ cl_dns_nameserver.ipv4 | d([]) }}'
 
 - name: set dns nameserver ipv6
   nclu:
@@ -57,4 +57,4 @@
     commands:
       - 'add dns nameserver ipv6 {{ item }}'
   with_items:
-    - '{{ cl_dns_nameserver_ipv6 }}'
+    - '{{ cl_dns_nameserver.ipv6 | d([]) }}'

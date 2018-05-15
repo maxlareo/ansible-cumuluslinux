@@ -21,12 +21,11 @@ Variable    | Description | Type | Default
 `cl_time_ntp_servers` | NTP servers list, possibility to add iburst option | Array | `[]`
 `cl_time_ntp_source` | NTP source interface | String | `eth0`
 `cl_locales` | Enable locale from locale-gen | Array | `[]`
-`cl_dns_nameserver_ipv4` | DNS nameserver in IPv4 | Array | `[]`
-`cl_dns_nameserver_ipv6` | DNS nameserver in IPv6 | Array | `[]`
+`cl_dns_nameserver` | DNS nameserver from two subarray ipv4 and ipv6 | Hash | `{}`
 `cl_commands` | Ansible nclu atomic commands using [recursive](#recursive) lookup, permit del/add actions, played first | Hash | `{}`
 `cl_interfaces` | interfaces settings from `net add interfaces` using [recursive](#recursive) lookup | Hash | `{}`
 `cl_snmp` | snmp-server settings from `net add snmp-server` using [recursive](#recursive) lookup | Hash | `{}`
-`cl_syslog` | syslog setings from two subarray ipv4 and ipv6, each entry need an ip + a port and optionaly a proto(udp|tcp) | Hash | `{}`
+`cl_syslog` | syslog setings from two subarray of hash ipv4 and ipv6, each entry need an ip + a port and optionaly a proto(udp/tcp) | Hash | `{}`
 
 Dependencies
 ------------
@@ -87,11 +86,12 @@ Example Playbook
         cl_locales:
           - en_US.UTF-8 UTF-8
           - fr_FR.UTF-8 UTF-8
-        cl_dns_nameserver_ipv4:
-          - 9.9.9.9
-          - 1.1.1.1
-        cl_dns_nameserver_ipv6:
-          - 2620:fe::fe
+        cl_dns_nameserver:
+          ipv4:
+            - 9.9.9.9
+            - 1.1.1.1
+          ipv6:
+            - 2620:fe::fe
         cl_interfaces:
           swp1:
             ip:
