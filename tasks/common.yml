@@ -30,7 +30,7 @@
     atomic: true
     description: Ansible - set ntp source
     commands:
-      - 'add time ntp server {{ cl_time_ntp_source }}'
+      - 'add time ntp source {{ cl_time_ntp_source }}'
 
 - name: Enable locales
   lineinfile:
