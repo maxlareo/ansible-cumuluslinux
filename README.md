@@ -25,7 +25,7 @@ Variable    | Description | Type | Default
 `cl_commands` | Ansible nclu atomic commands using [recursive](#recursive) lookup, permit del/add actions, played first | Hash | `{}`
 `cl_snmp` | snmp-server settings from `net add snmp-server` using [recursive](#recursive) lookup | Hash | `{}`
 `cl_syslog` | syslog setings from two subarray of hash ipv4 and ipv6, each entry need an ip + a port and optionaly a proto(udp/tcp) | Hash | `{}`
-`cl_interfaces` | interfaces settings from `net add interfaces` using [recursive](#recursive) lookup | Hash | `{}`
+`cl_interface` | interface settings from `net add interface` using [recursive](#recursive) lookup | Hash | `{}`
 `cl_bond` | bond settings from `net add bond` using [recursive](#recursive) lookup | Hash | `{}`
 `cl_vlan` | vlan settings from `net add vlan` using [recursive](#recursive) lookup | Hash | `{}`
 
@@ -39,13 +39,13 @@ Custom Lookup
 
 ### [Recursive](https://github.com/maxlareo/ansible-cumuluslinux/blob/master/lookup_plugins/recursive.py)
 
-To manage Cumulus Linux interfaces configuration with Ansible, I coded a lookup plugin to be able to construct the variables from a hash and it will recursivly read the nested hash to transform the hash into a list of strings.
+To manage Cumulus Linux interface configuration with Ansible, I coded a lookup plugin to be able to construct the variables from a hash and it will recursivly read the nested hash to transform the hash into a list of strings.
 
 Every depth into the variables will be added to the nclu command like that:
 
 var:
 ```
-cl_interfaces:
+cl_interface:
   swp1:
     ip:
       address: 192.168.1.1/24
@@ -94,7 +94,7 @@ Example Playbook
             - 1.1.1.1
           ipv6:
             - 2620:fe::fe
-        cl_interfaces:
+        cl_interface:
           swp1:
             ip:
               address: 192.168.1.1/24

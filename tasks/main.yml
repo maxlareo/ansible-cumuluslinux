@@ -38,11 +38,11 @@
     - cumulus
     - cumulus_syslog
 
-- name: include interfaces
-  include_tasks: interfaces.yml
+- name: include interface
+  include_tasks: interface.yml
   tags:
     - cumulus
-    - cumulus_interfaces
+    - cumulus_interface
 
 - name: include bond
   include_tasks: bond.yml

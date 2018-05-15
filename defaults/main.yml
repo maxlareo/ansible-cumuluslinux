@@ -21,8 +21,8 @@ cl_commands: {}
 # syslog
 cl_syslog: {}
 
-# interfaces
-cl_interfaces: {}
+# interface
+cl_interface: {}
 
 # bond
 cl_bond: {}

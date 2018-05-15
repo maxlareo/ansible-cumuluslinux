@@ -1,0 +1,20 @@
+---
+# Set CumulusLinux interface
+
+- name: abort uncommit nclu modification
+  nclu:
+    abort: true
+
+- name: Set interface
+  nclu:
+    commands:
+      - add interface {{ item }}
+  with_recursive:
+    - '{{ cl_interface }}'
+  register: interface
+
+- name: Commit nclu only if interface changed
+  nclu:
+    commit: true
+    description: 'Ansible - set interface'
+  when: interface.changed
