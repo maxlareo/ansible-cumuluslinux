@@ -1,5 +1,5 @@
 ---
-# Apply raw nclu net commands, for example "add time zone Etc/UTC"
+# Apply raw non-recursive nclu net commands, for example "add time zone Etc/UTC"
 # Useful to re-apply full config taken from "net show config command"
 
 - name: Abort uncommit nclu modifications
