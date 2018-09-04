@@ -1,5 +1,6 @@
 ---
 # Apply raw nclu net commands, for example "add time zone Etc/UTC"
+# Useful to re-apply full config taken from "net show config command"
 
 - name: Abort uncommit nclu modifications
   nclu:
@@ -13,8 +14,8 @@
     - '{{ cl_raw }}'
   register: raw
 
-- name: Commit nclu only if interface changed
+- name: Commit
   nclu:
     commit: true
-    description: 'Ansible - set interface'
+    description: 'Ansible - raw commands'
   #when: raw.changed
