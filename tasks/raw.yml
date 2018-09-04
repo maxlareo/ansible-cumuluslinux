@@ -1,0 +1,20 @@
+---
+# Apply raw nclu net commands, for example "add time zone Etc/UTC"
+
+- name: Abort uncommit nclu modifications
+  nclu:
+    abort: true
+
+- name: Raw commands
+  nclu:
+    commands:
+      - '{{ item }}'
+  with_items:
+    - '{{ cl_raw }}'
+  register: raw
+
+- name: Commit nclu only if interface changed
+  nclu:
+    commit: true
+    description: 'Ansible - set interface'
+  #when: raw.changed
