@@ -55,3 +55,9 @@
   tags:
     - cumulus
     - cumulus_vlan
+
+- name: include raw
+  include_tasks: raw.yml
+  tags:
+    - cumulus
+    - cumulus_raw

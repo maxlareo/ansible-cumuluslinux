@@ -108,9 +108,8 @@ Example Playbook
                   - 10,12
         cl_snmp:
           listening-address:
-            ip:
-              - 192.168.1.10
-              - 192.168.1.20
+            - 192.168.1.10
+            - 192.168.1.20
           readonly-community:
             my_rocommunity:
               access: any
